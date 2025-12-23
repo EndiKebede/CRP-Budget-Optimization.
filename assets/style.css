@@ -7,6 +7,9 @@
   --shadow:0 8px 30px rgba(2,6,23,.08);
   --radius:16px;
   --max:1100px;
+
+  /* Text column width (controls paragraph + figure width inside cards) */
+  --textcol:72ch;  /* try 66ch for narrower; 78ch for wider */
 }
 
 *{box-sizing:border-box}
@@ -144,7 +147,7 @@ a:hover{text-decoration:underline}
   background:rgba(255,255,255,.14);
   color:white;
 }
-.btn:hover{background:rgba(255,255,255,.22)}
+.btn:hover{background:rgba(255,255,255,.22); text-decoration:none}
 .btn.primary{
   background:white;
   color:#0f172a;
@@ -176,16 +179,14 @@ a:hover{text-decoration:underline}
   margin-bottom:20px;
 }
 
-.section{margin-top:18px}
-.section h2{
-  margin:0 0 10px;
-  font-size:20px;
-}
-
-.hr{
-  height:1px;
-  background:var(--line);
-  margin:18px 0;
+/* Force readable text column inside cards */
+.card p,
+.card ul,
+.card ol,
+.card h2,
+.card h3,
+.card .muted{
+  max-width: var(--textcol);
 }
 
 /* ================= GRID ================= */
@@ -242,28 +243,29 @@ a:hover{text-decoration:underline}
   text-decoration:none;
 }
 
-/* ================= RESEARCH MEDIA (FIXED SIZE) ================= */
+/* ================= RESEARCH FIGURES (FIXED!) ================= */
+/* Figures will NEVER exceed the same width as your text */
 .media-block{
-  margin:20px auto 16px auto;
-  max-width:780px;   /* CRITICAL: controls image size */
+  margin:16px 0;
+  max-width: var(--textcol);
 }
 
 .media-block img{
-  width:100%;
-  max-width:780px;
-  height:auto;
   display:block;
-  margin:0 auto;
+  width:100%;
+  max-width: var(--textcol);
+  height:auto;
+  margin:0;
   border-radius:12px;
   border:1px solid rgba(20,30,50,.08);
   box-shadow:0 6px 18px rgba(20,30,50,.08);
 }
 
 .media-block figcaption{
+  max-width: var(--textcol);
   font-size:0.9rem;
   color:rgba(20,30,50,.65);
   margin-top:8px;
-  text-align:center;
 }
 
 /* ================= MEDIA CARD ================= */
